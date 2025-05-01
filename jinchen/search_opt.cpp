@@ -1,4 +1,3 @@
-#include <omp.h>
 // 标准库头文件
 #include <algorithm>
 #include <array>
@@ -18,6 +17,8 @@
 #include <thread>
 #include <tuple>
 #include <vector>
+#include <sstream>
+#include <omp.h>
 
 // 系统相关头文件
 #ifdef _WIN32
@@ -25,6 +26,7 @@
 #include <psapi.h>
 #else
 #include <sys/resource.h>
+#include <sys/stat.h>
 #endif
 
 // 第三方库头文件
@@ -51,6 +53,19 @@ std::map<int, long double> a1_dict = {
 std::map<int, long double> a2_dict = {
     {11, 71.0}, {13, 74.0}, {17, 80.0}, {19, 84.0}
 };
+
+// 当前任务ID，用于确定输出文件名
+int current_task_id = 0;
+std::string get_output_filename() {
+    // Create output directory if it doesn't exist
+    #ifdef _WIN32
+    CreateDirectory("output", NULL);
+    #else
+    mkdir("output", 0777);
+    #endif
+    
+    return "output/search_results_task" + std::to_string(current_task_id) + ".txt";
+}
 
 // 前向声明
 void write_solution_to_file(const std::string& solution, int r, int s, int t = -1);
@@ -119,7 +134,7 @@ void signal_thread_complete() {
 
 void write_program_start() {
     std::lock_guard<std::mutex> lock(cout_mutex);
-    std::ofstream outfile("search_results.txt", std::ios::app);
+    std::ofstream outfile(get_output_filename(), std::ios::app);
     if (!outfile) {
         std::cerr << "Failed to open output file" << std::endl;
         return;
@@ -182,7 +197,7 @@ void print_performance_statistics(const PerformanceMetrics& metrics, const std::
 
 void write_performance_statistics(const PerformanceMetrics& metrics, double cpu_time, size_t solutions_count, unsigned long long function_calls) {
     std::lock_guard<std::mutex> lock(cout_mutex);
-    std::ofstream outfile("search_results.txt", std::ios::app);
+    std::ofstream outfile(get_output_filename(), std::ios::app);
     if (!outfile) {
         std::cerr << "Failed to write performance statistics" << std::endl;
         return;
@@ -403,9 +418,25 @@ std::vector<std::string> check_x1_r(unsigned long x1, int r, int l, int t) {
     return solutions;
 }
 
+// 创建一个辅助函数来同时输出到控制台和文件
+void log_message(const std::string& message) {
+    std::lock_guard<std::mutex> lock(cout_mutex);
+    // 输出到控制台
+    std::cout << message << std::endl;
+    
+    // 同时写入文件
+    std::ofstream outfile(get_output_filename(), std::ios::app);
+    if (!outfile) {
+        std::cerr << "Failed to open output file" << std::endl;
+        return;
+    }
+    outfile << message << std::endl;
+    outfile.close();
+}
+
 void write_solution_to_file(const std::string& solution, int r, int s, int t) {
     std::lock_guard<std::mutex> lock(cout_mutex);
-    std::ofstream outfile("search_results.txt", std::ios::app);
+    std::ofstream outfile(get_output_filename(), std::ios::app);
     if (!outfile) {
         std::cerr << "Failed to open output file" << std::endl;
         return;
@@ -452,6 +483,9 @@ std::vector<std::string> search_for_r_s_and_t_ge_70(int r, int s, int l) {
     long double bound = a2 / (r + s - 2 * a1);
     unsigned long actual_bound = static_cast<unsigned long>(std::floor(std::exp(bound)));
     unsigned long total = (actual_bound + 1) / 2;
+    
+    log_message("Total length of the progress bar: " + std::to_string(total));
+    
     std::atomic<unsigned long> progress{0};
     unsigned long progress_interval = std::min(std::max(static_cast<unsigned long>(200), total / 10000), total);
     const int num_threads = std::thread::hardware_concurrency();
@@ -538,7 +572,7 @@ std::vector<std::string> search_for_r_s_and_big_t(int r, int s, int t, int l) {
         total += (x1_bound + 1) / 2;
         if (total % 10000000 == 0) std::cout << "Total length of the progress bar:" << total << '\n';
     }
-    std::cout << "Total length of the progress bar:" << total << '\n';
+    log_message("Total length of the progress bar: " + std::to_string(total));
     std::atomic<unsigned long> progress{0};
     unsigned long progress_interval = std::min(std::max(static_cast<unsigned long>(200), total / 10000), total);
     
@@ -644,7 +678,7 @@ std::vector<std::string> search_for_r_s_and_t(int r, int s, int t, int l) {
         total += (real_bound / z1 + 1) / 2;
         if (total % 10000000 == 0) std::cout << "Total length of the progress bar:" << total << '\n';
     }
-    std::cout << "Total length of the progress bar:" << total << '\n';
+    log_message("Total length of the progress bar: " + std::to_string(total));
     std::atomic<unsigned long> progress{0};
     unsigned long progress_interval = std::min(std::max(static_cast<unsigned long>(200), total / 10000), total);
 
@@ -935,42 +969,63 @@ int main() {
     getrusage(RUSAGE_SELF, &start_usage);
     #endif
 
-    write_program_start();
     std::vector<std::string> solutions, result;
     
     // Uncomment the task you want to run
+    // current_task_id = 1;
+    // write_program_start();
     // result = task_1();
     // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
     
-    // result = task_2();
-    // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+    current_task_id = 2;
+    write_program_start();
+    result = task_2();
+    if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
     
+    // current_task_id = 3;
+    // write_program_start();
     // result = task_3();
     // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
     
+    // current_task_id = 4;
+    // write_program_start();
     // result = task_4();
     // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
     
+    // current_task_id = 5;
+    // write_program_start();
     // result = task_5();
     // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
     
+    // current_task_id = 6;
+    // write_program_start();
     // result = task_6();
     // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
     
+    // current_task_id = 7;
+    // write_program_start();
     // result = task_7();
     // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
     
+    // current_task_id = 8;
+    // write_program_start();
     // result = task_8();
     // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
     
+    // current_task_id = 9;
+    // write_program_start();
     // result = task_9();
     // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
 
+    // current_task_id = 10;
+    // write_program_start();
     // result = task_10();
     // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
 
-    result = task_11();
-    if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+    // current_task_id = 11;
+    // write_program_start();
+    // result = task_11();
+    // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
 
     auto wall_end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> wall_duration = wall_end - wall_start;
