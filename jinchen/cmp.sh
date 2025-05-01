@@ -1,0 +1,1 @@
+g++ -std=c++17 -march=native -O3 -ftree-vectorize search_opt.cpp -pthread -lgmp -o search_opt
