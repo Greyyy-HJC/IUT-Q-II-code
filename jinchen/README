@@ -9,7 +9,7 @@ bash cmp.sh
 用命令行指令控制运行哪些 task
 
 ```bash
-./search_opt 1 2 3 4 5 6 7 8 9
+./search_opt 1 2 3 4 5 6 7-1 8-1 8-2
 ```
 
 ```bash
@@ -34,5 +34,5 @@ Available tasks:
 
 ## 3. 结果
 
-例如task 8 的结果会保存在 `output/search_results_task8.txt` 中
+例如task 8-2 的结果会保存在 `output/search_results_task82.txt` 中
 
