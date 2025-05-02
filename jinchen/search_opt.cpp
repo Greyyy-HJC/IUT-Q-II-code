@@ -812,6 +812,8 @@ std::vector<std::string> get_solutions_for_fixed_r_s_and_t_ge_u0(int r, int s, i
 }
 
 
+
+// Easy Tasks
 // Task 1: Example for (r,s,t) = (11,13,17)
 std::vector<std::string> task_1() {
     return get_solutions_for_fixed_r_s_and_t(11, 13, 17);
@@ -893,12 +895,20 @@ std::vector<std::string> task_5() {
     Function calls: 1.58e+08
     */ 
 
-// Task 6: Case of (r,s,t) = (5,7,t), t >= 10
+    
+// Normal Tasks
+// Task 6: Case of (r,s,t) = (5,7,t), t >= 7
+// 只需处理>=7素数(5,7已被证明)以及例外的素数乘积,即 8, 9, 12
 std::vector<std::string> task_6() {
     std::vector<std::string> solutions;
     std::vector<std::string> result;
+
+    result = search_for_r_s_and_t_ge_70(5, 7, 19); // 取 (r,s,l) = (5,7,19)
+    if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
     
-    for (int t = 69; t >= 10; --t) {
+    for (int t = 69; t >= 8; --t) {
+        if (!is_prime(t) && t != 12 && t != 9 && t != 8) continue; // 排除不符合条件的 t
+
         result = get_solutions_for_fixed_r_s_and_t(5, 7, t);
         if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
     }
@@ -906,47 +916,24 @@ std::vector<std::string> task_6() {
     return solutions;
 }
 
-// Task 7: Case of (r,s,t) = (5,7,9)
-std::vector<std::string> task_7() {
-    return get_solutions_for_fixed_r_s_and_t(5, 7, 9);
+
+// Hard Tasks
+// Task 7: Case of (r,s,t) = (4,7,t), t >= 7
+// 只需处理>=7素数(2,3,7已被证明)以及例外的素数乘积,即 25
+
+std::vector<std::string> task_7_1() {
+    // 搜索 t >= 70 的情形
+    return search_for_r_s_and_t_ge_70(4, 7, 19); 
 }
 
-// Task 8: Case of (r,s,t) = (5,7,8)
-std::vector<std::string> task_8() {
-    return get_solutions_for_fixed_r_s_and_t(5, 7, 8);
-}
-
-// Task 9: Left cases: (r,s) = (4,5), (4,7), (5,6)
-std::vector<std::string> task_9() {
+std::vector<std::string> task_7_2() {
+    // 搜索 30 <= t <= 69 的情形
     std::vector<std::string> solutions;
     std::vector<std::string> result;
     
-    // Case (r,s) = (4,5)
-    result = get_solutions_for_fixed_r_s_and_t_ge_u0(4, 5, 5);
-    if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
-    
-    // Case (r,s) = (4,7)
-    result = get_solutions_for_fixed_r_s_and_t_ge_u0(4, 7, 7);
-    if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
-    
-    // Case (r,s) = (5,6)
-    result = get_solutions_for_fixed_r_s_and_t_ge_u0(5, 6, 6);
-    if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
-    
-    return solutions;
-}
+    for (int t = 69; t >= 30; --t) {
+        if (!is_prime(t) && t != 25) continue; // 排除不符合条件的 t
 
-// Task 10: Case of (r,s,t) = (5,7,8)
-std::vector<std::string> task_10() {
-    return get_solutions_for_fixed_r_s_and_t(5, 6, 7);
-}
-
-// Task 11: Case of (r,s,t) = (4,7,t), t >= 10
-std::vector<std::string> task_11() {
-    std::vector<std::string> solutions;
-    std::vector<std::string> result;
-    
-    for (int t = 69; t >= 10; --t) {
         result = get_solutions_for_fixed_r_s_and_t(4, 7, t);
         if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
     }
@@ -954,8 +941,99 @@ std::vector<std::string> task_11() {
     return solutions;
 }
 
+std::vector<std::string> task_7_3() {
+    // 搜索 t = 17,19,23,25,29 的情形
+    std::vector<std::string> solutions;
+    std::vector<std::string> result;
+    
+    std::vector<int> t_values = {17, 19, 23, 25, 29};
+    for (int t : t_values) {
+        result = get_solutions_for_fixed_r_s_and_t(4, 7, t);
+        if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+    }
+    
+    return solutions;
+}
 
-int main() {
+std::vector<std::string> task_7_4() {
+    // 搜索 t = 11,13 的情形
+    std::vector<std::string> solutions;
+    std::vector<std::string> result;
+    
+    std::vector<int> t_values = {11, 13};
+    for (int t : t_values) {
+        result = get_solutions_for_fixed_r_s_and_t(4, 7, t);
+        if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+    }
+    
+    return solutions;
+}
+
+// Task 8: Case of (r,s,t) = (5,6,t), t >= 6
+// 只需处理>=7素数(2,3,5已被证明)
+
+std::vector<std::string> task_8_1() {
+    // 搜索 t >= 70 的情形
+    return search_for_r_s_and_t_ge_70(5, 6, 19); 
+}
+
+std::vector<std::string> task_8_2() {
+    // 搜索 30 <= t <= 69 的情形
+    std::vector<std::string> solutions;
+    std::vector<std::string> result;
+    
+    for (int t = 69; t >= 30; --t) {
+        if (!is_prime(t)) continue; // 排除不符合条件的 t
+
+        result = get_solutions_for_fixed_r_s_and_t(5, 6, t);
+        if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+    }
+    
+    return solutions;
+}
+
+std::vector<std::string> task_8_3() {
+    // 搜索 t = 17,19,23,29 的情形
+    std::vector<std::string> solutions;
+    std::vector<std::string> result;
+    
+    std::vector<int> t_values = {17, 19, 23, 29};
+    for (int t : t_values) {
+        result = get_solutions_for_fixed_r_s_and_t(5, 6, t);
+        if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+    }
+    
+    return solutions;
+}
+
+std::vector<std::string> task_8_4() {
+    // 搜索 t = 11,13 的情形
+    std::vector<std::string> solutions;
+    std::vector<std::string> result;
+    
+    std::vector<int> t_values = {11, 13};
+    for (int t : t_values) {
+        result = get_solutions_for_fixed_r_s_and_t(5, 6, t);
+        if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+    }
+    
+    return solutions;
+}
+
+std::vector<std::string> task_8_5() {
+    // 搜索 (r,s,t) = (5,6,7) 的情形
+    return get_solutions_for_fixed_r_s_and_t(5, 6, 7);
+}
+
+
+// Impossible Tasks
+// Task 9: Left case of (r,s,t) = (4,5,t), t >= 7
+// std::vector<std::string> task_9() {
+//     ...
+// }
+
+
+int main(int argc, char* argv[]) {
     auto wall_start = std::chrono::high_resolution_clock::now();
     
     #ifdef _WIN32
@@ -971,61 +1049,127 @@ int main() {
 
     std::vector<std::string> solutions, result;
     
-    // Uncomment the task you want to run
-    // current_task_id = 1;
-    // write_program_start();
-    // result = task_1();
-    // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+    // If no arguments are provided, show usage
+    if (argc < 2) {
+        std::cout << "Usage: " << argv[0] << " task_id1 [task_id2 task_id3 ...]\n";
+        std::cout << "Available tasks:\n";
+        std::cout << "  1: Example for (r,s,t) = (11,13,17)\n";
+        std::cout << "  2: Search for 4 <= r <= s <= t where r + s >= 14\n";
+        std::cout << "  3: Case of (r,s) = (4,9)\n";
+        std::cout << "  4: Case of (r,s) = (5,8)\n";
+        std::cout << "  5: Case of (r,s) = (6,7)\n";
+        std::cout << "  6: Case of (r,s,t) = (5,7,t), t >= 7\n";
+        std::cout << "  7-1: Case of (r,s,t) = (4,7,t), t >= 70\n";
+        std::cout << "  7-2: Case of (r,s,t) = (4,7,t), 30 <= t <= 69\n";
+        std::cout << "  7-3: Case of (r,s,t) = (4,7,t), t = 17,19,23,25,29\n";
+        std::cout << "  7-4: Case of (r,s,t) = (4,7,t), t = 11,13\n";
+        std::cout << "  8-1: Case of (r,s,t) = (5,6,t), t >= 70\n";
+        std::cout << "  8-2: Case of (r,s,t) = (5,6,t), 30 <= t <= 69\n";
+        std::cout << "  8-3: Case of (r,s,t) = (5,6,t), t = 17,19,23,29\n";
+        std::cout << "  8-4: Case of (r,s,t) = (5,6,t), t = 11,13\n";
+        std::cout << "  8-5: Case of (r,s,t) = (5,6,7)\n";
+        return 1;
+    }
     
-    current_task_id = 2;
-    write_program_start();
-    result = task_2();
-    if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
-    
-    // current_task_id = 3;
-    // write_program_start();
-    // result = task_3();
-    // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
-    
-    // current_task_id = 4;
-    // write_program_start();
-    // result = task_4();
-    // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
-    
-    // current_task_id = 5;
-    // write_program_start();
-    // result = task_5();
-    // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
-    
-    // current_task_id = 6;
-    // write_program_start();
-    // result = task_6();
-    // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
-    
-    // current_task_id = 7;
-    // write_program_start();
-    // result = task_7();
-    // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
-    
-    // current_task_id = 8;
-    // write_program_start();
-    // result = task_8();
-    // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
-    
-    // current_task_id = 9;
-    // write_program_start();
-    // result = task_9();
-    // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
-
-    // current_task_id = 10;
-    // write_program_start();
-    // result = task_10();
-    // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
-
-    // current_task_id = 11;
-    // write_program_start();
-    // result = task_11();
-    // if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+    // Parse task IDs from command line arguments
+    for (int i = 1; i < argc; i++) {
+        std::string arg = argv[i];
+        std::cout << "Running task " << arg << std::endl;
+        
+        if (arg == "1") {
+            current_task_id = 1;
+            write_program_start();
+            result = task_1();
+            if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+        }
+        else if (arg == "2") {
+            current_task_id = 2;
+            write_program_start();
+            result = task_2();
+            if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+        }
+        else if (arg == "3") {
+            current_task_id = 3;
+            write_program_start();
+            result = task_3();
+            if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+        }
+        else if (arg == "4") {
+            current_task_id = 4;
+            write_program_start();
+            result = task_4();
+            if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+        }
+        else if (arg == "5") {
+            current_task_id = 5;
+            write_program_start();
+            result = task_5();
+            if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+        }
+        else if (arg == "6") {
+            current_task_id = 6;
+            write_program_start();
+            result = task_6();
+            if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+        }
+        else if (arg == "7-1") {
+            current_task_id = 71;
+            write_program_start();
+            result = task_7_1();
+            if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+        }
+        else if (arg == "7-2") {
+            current_task_id = 72;
+            write_program_start();
+            result = task_7_2();
+            if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+        }
+        else if (arg == "7-3") {
+            current_task_id = 73;
+            write_program_start();
+            result = task_7_3();
+            if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+        }
+        else if (arg == "7-4") {
+            current_task_id = 74;
+            write_program_start();
+            result = task_7_4();
+            if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+        }
+        else if (arg == "8-1") {
+            current_task_id = 81;
+            write_program_start();
+            result = task_8_1();
+            if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+        }
+        else if (arg == "8-2") {
+            current_task_id = 82;
+            write_program_start();
+            result = task_8_2();
+            if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+        }
+        else if (arg == "8-3") {
+            current_task_id = 83;
+            write_program_start();
+            result = task_8_3();
+            if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+        }
+        else if (arg == "8-4") {
+            current_task_id = 84;
+            write_program_start();
+            result = task_8_4();
+            if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+        }
+        else if (arg == "8-5") {
+            current_task_id = 85;
+            write_program_start();
+            result = task_8_5();
+            if (!result.empty()) solutions.insert(solutions.end(), result.begin(), result.end());
+        }
+        else {
+            std::cout << "Unknown task ID: " << arg << std::endl;
+        }
+    }
 
     auto wall_end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> wall_duration = wall_end - wall_start;

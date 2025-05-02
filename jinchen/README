@@ -1,0 +1,38 @@
+## 1. 编译
+
+```bash
+bash cmp.sh
+```
+
+## 2. 运行
+
+用命令行指令控制运行哪些 task
+
+```bash
+./search_opt 1 2 3 4 5 6 7 8 9
+```
+
+```bash
+Available tasks:
+1: Example for (r,s,t) = (11,13,17)
+2: Search for 4 <= r <= s <= t where r + s >= 14
+3: Case of (r,s) = (4,9)
+4: Case of (r,s) = (5,8)
+5: Case of (r,s) = (6,7)
+6: Case of (r,s,t) = (5,7,t), t >= 7
+7-1: Case of (r,s,t) = (4,7,t), t >= 70
+7-2: Case of (r,s,t) = (4,7,t), 30 <= t <= 69
+7-3: Case of (r,s,t) = (4,7,t), t = 17,19,23,25,29
+7-4: Case of (r,s,t) = (4,7,t), t = 11,13
+8-1: Case of (r,s,t) = (5,6,t), t >= 70
+8-2: Case of (r,s,t) = (5,6,t), 30 <= t <= 69
+8-3: Case of (r,s,t) = (5,6,t), t = 17,19,23,29
+8-4: Case of (r,s,t) = (5,6,t), t = 11,13
+8-5: Case of (r,s,t) = (5,6,7)
+```
+
+
+## 3. 结果
+
+例如task 8 的结果会保存在 `output/search_results_task8.txt` 中
+
