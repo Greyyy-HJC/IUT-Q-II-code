@@ -1,10 +1,10 @@
 
 ========================================
 Program Execution Started
-Date and Time: Fri May  2 10:44:32 2025
+Date and Time: Fri May  2 23:50:44 2025
 System Information:
-Available CPU Threads: 16
-Maximum Concurrent Threads: 12
+Available CPU Threads: 128
+Maximum Concurrent Threads: 96
 ========================================
 
 Total length of the progress bar: 442
@@ -12,17 +12,17 @@ Total length of the progress bar: 442
 Performance Statistics:
 ------------------------
 Total solutions found: 0
-Wall clock time: 0.0483987 seconds (0.00 hours)
+Wall clock time: 0.0769548 seconds (0.00 hours)
 Total CPU time: 0.00 core*hours
-Average CPU cores used: 6.61
+Average CPU cores used: 5.02
 Function calls: 5.20e+05
 ========================================
 
 Performance Statistics:
 ------------------------
 Total solutions found: 0
-Wall clock time: 0.0486261 seconds (0.00 hours)
+Wall clock time: 0.0772948 seconds (0.00 hours)
 Total CPU time: 0.00 core*hours
-Average CPU cores used: 6.58
+Average CPU cores used: 5.01
 Function calls: 5.20e+05
 ========================================
