@@ -1,0 +1,28 @@
+
+========================================
+Program Execution Started
+Date and Time: Sun May  4 05:25:26 2025
+System Information:
+Available CPU Threads: 128
+Maximum Concurrent Threads: 96
+========================================
+
+Total length of the progress bar: 907904517
+
+Performance Statistics:
+------------------------
+Total solutions found: 0
+Wall clock time: 209415 seconds (58.17 hours)
+Total CPU time: 6307.94 core*hours
+Average CPU cores used: 108.44
+Function calls: 3.39e+09
+========================================
+
+Performance Statistics:
+------------------------
+Total solutions found: 0
+Wall clock time: 209415 seconds (58.17 hours)
+Total CPU time: 6307.94 core*hours
+Average CPU cores used: 108.44
+Function calls: 3.39e+09
+========================================
