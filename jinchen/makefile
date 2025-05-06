@@ -6,7 +6,7 @@ SRC = search_opt.cpp
 
 # CPU affinity configuration
 # Set the CPU cores to use (e.g., 0-3 for cores 0,1,2,3)
-CPU_CORES ?= 0-7
+CPU_CORES ?= 0-112
 TASKSET = taskset -c $(CPU_CORES)
 
 all: $(TARGET)
