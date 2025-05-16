@@ -1,0 +1,68 @@
+
+========================================
+Program Execution Started
+Date and Time: Fri May  9 17:33:28 2025
+System Information:
+Available CPU Threads: 128
+Maximum Concurrent Threads: 96
+========================================
+
+Total length of the progress bar: 1865234501
+
+Performance Statistics:
+------------------------
+Total solutions found: 0
+Wall clock time: 139770 seconds (38.82 hours)
+Total CPU time: 3497.21 core*hours
+Average CPU cores used: 90.08
+Function calls: 2.44e+08
+========================================
+Total length of the progress bar: 1850198177
+
+Performance Statistics:
+------------------------
+Total solutions found: 0
+Wall clock time: 124871 seconds (34.69 hours)
+Total CPU time: 2427.44 core*hours
+Average CPU cores used: 69.98
+Function calls: 1.48e+09
+========================================
+Total length of the progress bar: 1839340810
+
+Performance Statistics:
+------------------------
+Total solutions found: 0
+Wall clock time: 95113.4 seconds (26.42 hours)
+Total CPU time: 2015.79 core*hours
+Average CPU cores used: 76.30
+Function calls: 7.84e+07
+========================================
+Total length of the progress bar: 1837533319
+
+Performance Statistics:
+------------------------
+Total solutions found: 0
+Wall clock time: 90286.6 seconds (25.08 hours)
+Total CPU time: 1902.27 core*hours
+Average CPU cores used: 75.85
+Function calls: 1.37e+08
+========================================
+Total length of the progress bar: 1836145486
+
+Performance Statistics:
+------------------------
+Total solutions found: 0
+Wall clock time: 92928 seconds (25.81 hours)
+Total CPU time: 836.44 core*hours
+Average CPU cores used: 32.40
+Function calls: 2.09e+09
+========================================
+
+Performance Statistics:
+------------------------
+Total solutions found: 0
+Wall clock time: 542979 seconds (150.83 hours)
+Total CPU time: 10679.16 core*hours
+Average CPU cores used: 70.80
+Function calls: 2.09e+09
+========================================
