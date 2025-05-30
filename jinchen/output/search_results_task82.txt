@@ -1,0 +1,108 @@
+
+========================================
+Program Execution Started
+Date and Time: Mon May 26 05:22:31 2025
+System Information:
+Available CPU Threads: 128
+Maximum Concurrent Threads: 96
+========================================
+
+Total length of the progress bar: 1835646081
+
+Performance Statistics:
+------------------------
+Total solutions found: 0
+Wall clock time: 13112.7 seconds (3.64 hours)
+Total CPU time: 389.47 core*hours
+Average CPU cores used: 106.93
+Function calls: 2.57e+08
+========================================
+Total length of the progress bar: 1835646093
+
+Performance Statistics:
+------------------------
+Total solutions found: 0
+Wall clock time: 16987.6 seconds (4.72 hours)
+Total CPU time: 500.39 core*hours
+Average CPU cores used: 106.04
+Function calls: 2.73e+09
+========================================
+Total length of the progress bar: 1835646106
+
+Performance Statistics:
+------------------------
+Total solutions found: 0
+Wall clock time: 16008.9 seconds (4.45 hours)
+Total CPU time: 488.92 core*hours
+Average CPU cores used: 109.95
+Function calls: 8.99e+08
+========================================
+Total length of the progress bar: 1835646270
+
+Performance Statistics:
+------------------------
+Total solutions found: 0
+Wall clock time: 16270.1 seconds (4.52 hours)
+Total CPU time: 480.55 core*hours
+Average CPU cores used: 106.33
+Function calls: 3.37e+09
+========================================
+Total length of the progress bar: 1835647437
+
+Performance Statistics:
+------------------------
+Total solutions found: 0
+Wall clock time: 18875.3 seconds (5.24 hours)
+Total CPU time: 552.25 core*hours
+Average CPU cores used: 105.33
+Function calls: 3.76e+09
+========================================
+Total length of the progress bar: 1835651106
+
+Performance Statistics:
+------------------------
+Total solutions found: 0
+Wall clock time: 31702.3 seconds (8.81 hours)
+Total CPU time: 555.75 core*hours
+Average CPU cores used: 63.11
+Function calls: 2.07e+09
+========================================
+Total length of the progress bar: 1835655757
+
+Performance Statistics:
+------------------------
+Total solutions found: 0
+Wall clock time: 123268 seconds (34.24 hours)
+Total CPU time: 571.27 core*hours
+Average CPU cores used: 16.68
+Function calls: 3.90e+08
+========================================
+Total length of the progress bar: 1835681981
+
+Performance Statistics:
+------------------------
+Total solutions found: 0
+Wall clock time: 70758.8 seconds (19.66 hours)
+Total CPU time: 1243.86 core*hours
+Average CPU cores used: 63.28
+Function calls: 1.74e+09
+========================================
+Total length of the progress bar: 1835904103
+
+Performance Statistics:
+------------------------
+Total solutions found: 0
+Wall clock time: 80770.2 seconds (22.44 hours)
+Total CPU time: 1358.41 core*hours
+Average CPU cores used: 60.55
+Function calls: 3.13e+09
+========================================
+
+Performance Statistics:
+------------------------
+Total solutions found: 0
+Wall clock time: 387775 seconds (107.72 hours)
+Total CPU time: 6140.86 core*hours
+Average CPU cores used: 57.01
+Function calls: 3.13e+09
+========================================
